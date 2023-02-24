@@ -39,15 +39,16 @@ export default PostDetails;
 // Specify dynamic routes to pre-render pages based on data.
 // The HTML is generated at build time and will be reused on each request.
 export async function getStaticPaths() {
-  const posts = await getPosts();
+  // const posts = await getPosts();÷
   return {
     paths: [],
-    fallback: blocking,
+    fallback: 'blocking',
   };
 }
 // posts.map(({ node: { slug } }) => ({ params: { slug } }))
 // Fetch data at build time
 export async function getStaticProps({ params }) {
+  console.log(params.slug);
   const data = await getPostDetails(params.slug);
   return {
     props: {
